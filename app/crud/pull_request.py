@@ -42,6 +42,28 @@ def get_pr_reviewers(db: Session, pull_request_id: str) -> list[str]:
     return [a.user_id for a in assignments]
 
 
+def remove_reviewer(db: Session, pull_request_id: str, user_id: str) -> None:
+    db.query(ReviewerAssignment).filter(
+        ReviewerAssignment.pull_request_id == pull_request_id,
+        ReviewerAssignment.user_id == user_id
+    ).delete()
+    db.flush()
+
+
+def is_reviewer_assigned(db: Session, pull_request_id: str, user_id: str) -> bool:
+    return db.query(ReviewerAssignment).filter(
+        ReviewerAssignment.pull_request_id == pull_request_id,
+        ReviewerAssignment.user_id == user_id
+    ).first() is not None
+
+
+def get_user_reviews(db: Session, user_id: str) -> list[PullRequest]:
+    return db.query(PullRequest).join(
+        ReviewerAssignment,
+        PullRequest.pull_request_id == ReviewerAssignment.pull_request_id
+    ).filter(ReviewerAssignment.user_id == user_id).all()
+
+
 def merge_pull_request(db: Session, pr: PullRequest) -> PullRequest:
     from sqlalchemy.sql import func
     pr.status = PRStatus.MERGED

@@ -14,6 +14,11 @@ class PullRequestMerge(BaseModel):
     pull_request_id: str
 
 
+class PullRequestReassign(BaseModel):
+    pull_request_id: str
+    old_user_id: str
+
+
 class PullRequest(BaseModel):
     pull_request_id: str
     pull_request_name: str
@@ -35,4 +40,9 @@ class PullRequestShort(BaseModel):
     
     class Config:
         from_attributes = True
+
+
+class UserReviewList(BaseModel):
+    user_id: str
+    pull_requests: list[PullRequestShort]
 
