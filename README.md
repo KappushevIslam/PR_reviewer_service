@@ -66,7 +66,9 @@ docker-compose up
 
 ### E2E тесты
 
+```bash
 make test
+```
 
 Реализованы тесты:
 
@@ -93,11 +95,7 @@ make psql       # Подключиться к PostgreSQL
 Конфигурация в `pyproject.toml` и `.flake8`.
 
 ```bash
-pip install -r requirements-dev.txt
-black app/ tests/
-isort app/ tests/
-flake8 app/ tests/
-mypy app/
+make lint
 ```
 
 ## Переменные окружения
