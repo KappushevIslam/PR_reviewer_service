@@ -1,10 +1,14 @@
-from app.schemas.error import ErrorResponse, ErrorDetail
-from app.schemas.team import Team, TeamMember, TeamCreate
-from app.schemas.user import User, UserUpdate
+from app.schemas.error import ErrorDetail, ErrorResponse
 from app.schemas.pull_request import (
-    PullRequest, PullRequestCreate, PullRequestMerge, 
-    PullRequestShort, PullRequestReassign, UserReviewList
+    PullRequest,
+    PullRequestCreate,
+    PullRequestMerge,
+    PullRequestReassign,
+    PullRequestShort,
+    UserReviewList,
 )
+from app.schemas.team import Team, TeamCreate, TeamDeactivateUsers, TeamMember
+from app.schemas.user import User, UserUpdate
 
 __all__ = [
     "ErrorResponse",
@@ -12,6 +16,7 @@ __all__ = [
     "Team",
     "TeamMember",
     "TeamCreate",
+    "TeamDeactivateUsers",
     "User",
     "UserUpdate",
     "PullRequest",
@@ -21,4 +26,3 @@ __all__ = [
     "PullRequestReassign",
     "UserReviewList",
 ]
-

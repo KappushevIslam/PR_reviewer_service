@@ -1,4 +1,5 @@
 from datetime import datetime
+
 from pydantic import BaseModel
 
 from app.models.pull_request import PRStatus
@@ -27,7 +28,7 @@ class PullRequest(BaseModel):
     assigned_reviewers: list[str]
     created_at: datetime | None = None
     merged_at: datetime | None = None
-    
+
     class Config:
         from_attributes = True
 
@@ -37,7 +38,7 @@ class PullRequestShort(BaseModel):
     pull_request_name: str
     author_id: str
     status: PRStatus
-    
+
     class Config:
         from_attributes = True
 
@@ -45,4 +46,3 @@ class PullRequestShort(BaseModel):
 class UserReviewList(BaseModel):
     user_id: str
     pull_requests: list[PullRequestShort]
-

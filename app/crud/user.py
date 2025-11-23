@@ -8,12 +8,7 @@ def get_user(db: Session, user_id: str) -> User | None:
 
 
 def create_user(db: Session, user_id: str, username: str, team_name: str, is_active: bool) -> User:
-    db_user = User(
-        user_id=user_id,
-        username=username,
-        team_name=team_name,
-        is_active=is_active
-    )
+    db_user = User(user_id=user_id, username=username, team_name=team_name, is_active=is_active)
     db.add(db_user)
     db.flush()
     return db_user
@@ -34,4 +29,3 @@ def update_user_active_status(db: Session, user_id: str, is_active: bool) -> Use
         user.is_active = is_active
         db.flush()
     return user
-

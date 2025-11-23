@@ -16,4 +16,3 @@ def create_team(db: Session, team_name: str) -> Team:
 
 def team_exists(db: Session, team_name: str) -> bool:
     return db.query(Team).filter(Team.team_name == team_name).first() is not None
-

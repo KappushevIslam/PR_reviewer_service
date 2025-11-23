@@ -6,7 +6,7 @@ class User(BaseModel):
     username: str
     team_name: str
     is_active: bool
-    
+
     class Config:
         from_attributes = True
 
@@ -14,4 +14,3 @@ class User(BaseModel):
 class UserUpdate(BaseModel):
     user_id: str
     is_active: bool
-

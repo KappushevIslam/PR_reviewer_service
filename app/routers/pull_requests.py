@@ -2,10 +2,7 @@ from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
 
 from app.database import get_db
-from app.schemas.pull_request import (
-    PullRequest, PullRequestCreate, PullRequestMerge, 
-    PullRequestReassign, UserReviewList
-)
+from app.schemas.pull_request import PullRequestCreate, PullRequestMerge, PullRequestReassign
 from app.services import pull_request_service
 
 router = APIRouter(prefix="/pullRequest", tags=["PullRequests"])
@@ -27,4 +24,3 @@ def merge_pull_request(pr_data: PullRequestMerge, db: Session = Depends(get_db))
 def reassign_reviewer(reassign_data: PullRequestReassign, db: Session = Depends(get_db)):
     pr, replaced_by = pull_request_service.reassign_reviewer(db, reassign_data)
     return {"pr": pr, "replaced_by": replaced_by}
-
