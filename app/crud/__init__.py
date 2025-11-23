@@ -1,4 +1,4 @@
-from app.crud import team, user
+from app.crud import team, user, pull_request
 
-__all__ = ["team", "user"]
+__all__ = ["team", "user", "pull_request"]
 

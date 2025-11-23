@@ -4,8 +4,8 @@ from sqlalchemy.exc import SQLAlchemyError
 
 from app.config import settings
 from app.database import engine, Base
-from app.routers import teams, users
-from app.models import Team, User
+from app.routers import teams, users, pull_requests
+from app.models import Team, User, PullRequest, ReviewerAssignment
 
 app = FastAPI(
     title="PR Reviewer Assignment Service",
@@ -15,6 +15,7 @@ app = FastAPI(
 
 app.include_router(teams.router)
 app.include_router(users.router)
+app.include_router(pull_requests.router)
 
 
 @app.on_event("startup")
